@@ -4,6 +4,7 @@
         private $name;
         private $id;
 
+
         function __construct($name, $id = null)
         {
             $this->name = $name;
@@ -37,20 +38,6 @@
             $this->setId($result['id']);
         }
 
-        function getTasks()
-        {
-          $tasks = Array();
-          $returned_tasks = $GLOBALS['DB']->query("SELECT * FROM tasks WHERE category_id = {$this->getId()};");
-          foreach($returned_tasks as $task) {
-              $description = $task['description'];
-              $id = $task['id'];
-              $category_id = $task['category_id'];
-              $new_Task = new Task($description, $id, $category_id);
-              array_push($tasks, $new_Task);
-          }
-          return $tasks;
-        }
-
         function update($new_name)
         {
             $GLOBALS['DB']->exec("UPDATE categories SET name = '{$new_name}' WHERE id = {$this->getId()};");
@@ -60,7 +47,6 @@
         function delete()
         {
             $GLOBALS['DB']->exec("DELETE FROM categories WHERE id = {$this->getId()};");
-            $GLOBALS['DB']->exec("DELETE FROM tasks WHERE category_id = {$this->getId()};");
         }
 
         static function getAll()
