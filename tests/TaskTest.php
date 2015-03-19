@@ -68,6 +68,50 @@
             $this->assertEquals($test_task, $result[0]);
         }
 
+        function testAddCategory()
+        {
+            //Arrange
+            $name = "Work stuff";
+            $id = null;
+            $test_category = new Category($name, $id);
+            $test_category->save();
+
+            $description = "File reports";
+            $test_task = new Task($description, $id);
+            $test_task->save();
+
+            //Act
+            $test_task->addCategory($test_category);
+
+            //Assert
+            $this->assertEquals($test_task->categories(), [$test_category]);
+        }
+
+        function testCategories()
+        {
+            //Arrange
+            $name = "Work stuff";
+            $id = null;
+            $test_category = new Category($name, $id);
+            $test_category->save();
+
+            $name2 = "Volunteer stuff";
+            $id = null;
+            $test_category2 = new Category($name2, $id);
+            $test_category2->save();
+
+            $description = "File reports";
+            $test_task = new Task($description, $id);
+            $test_task->save();
+
+            //Act
+            $test_task->addCategory($test_category);
+            $test_task->addCategory($test_category2);
+
+            //Assert
+            $this->assertEquals($test_task->categories(), [$test_category, $test_category2]);
+        }
+
         function test_getAll()
         {
             //Arrange

@@ -120,10 +120,10 @@
             //Arrange
             $name = "Work stuff";
             $id = null;
-            $test_category = new category($name, $id);
+            $test_category = new Category($name, $id);
             $test_category->save();
 
-            $description = "Wash the dog";
+            $description = "File reports";
             $test_task = new Task($description, $id);
             $test_task->save();
 
@@ -139,7 +139,7 @@
             //Arrange
             $name = "Home stuff";
             $id = null;
-            $test_category = new category($name, $id);
+            $test_category = new Category($name, $id);
             $test_category->save();
 
             $description = "Wash the dog";
